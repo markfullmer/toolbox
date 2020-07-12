@@ -1,10 +1,4 @@
 ## Git ##
-drupalclone() {
-  # usage: drupalclone token
-  git clone git@git.drupal.org:project/"$1".git
-  cd $1
-  git remote rename origin github
-}
 gitclone() {
   # usage: gitclone <project>
   # or: gitclone <vendor>/<project>
@@ -25,7 +19,12 @@ gitclone() {
     git remote rename origin github
     git remote -v
   fi
-
+}
+drupalclone() {
+  # usage: drupalclone token
+  git clone git@git.drupal.org:project/"$1".git
+  cd $1
+  git remote rename origin github
 }
 
 ## Pantheon ##
