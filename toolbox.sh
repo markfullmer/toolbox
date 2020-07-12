@@ -3,11 +3,29 @@ drupalclone() {
   # usage: drupalclone token
   git clone git@git.drupal.org:project/"$1".git
   cd $1
+  git remote rename origin github
 }
 gitclone() {
-  # usage: gitclone <repository name>
-  # e.g., gitclone markfullmer/toolbox
-  git clone git@github.com:"$1".git
+  # usage: gitclone <project>
+  # or: gitclone <vendor>/<project>
+  # Provide a shortcut default account
+  if [[ "$1" == *\/* ]]; then
+    path=$1
+    project=$(basename $1)
+  else
+    path="markfullmer/"$1
+    project=$1
+  fi
+  # e.g., gitclone toolbox
+  git clone git@github.com:"$path".git
+  # Make sure the clone succeeded before doing anything else.
+  if [ "$?" -eq 0 ]; then
+    cd $project
+    # Convention for remote naming.
+    git remote rename origin github
+    git remote -v
+  fi
+
 }
 
 ## Pantheon ##
