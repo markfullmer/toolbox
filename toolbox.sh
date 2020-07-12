@@ -7,7 +7,7 @@ drupalclone() {
 gitclone() {
   # usage: gitclone <repository name>
   # e.g., gitclone markfullmer/toolbox
-  open https://git@github.com:"$1"
+  git clone git@github.com:"$1".git
 }
 
 ## Pantheon ##
